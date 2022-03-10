@@ -1,0 +1,6 @@
+    // methode pr lire un fichier
+    public static void readFile(File file) throws FileNotFoundException {
+            Scanner dict = new Scanner(file);
+            while (dict.hasNextLine())
+                System.out.println(dict.nextLine());
+        }
