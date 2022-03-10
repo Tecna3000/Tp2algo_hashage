@@ -1,6 +1,4 @@
 package main.java;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -9,13 +7,16 @@ public class HashTable {
     private int size;
 
 
-    public HashTable(ArrayList<LinkedList<WordToLetters>> hashtable, int size) {
-        this.size = size;
-        initTable();
+    public HashTable(ArrayList<WordToLetters>words) {
+        //this.size = size;
+        initialize();
     }
 
-    public void initTable(){
+    public void initialize(){
         this.hashtable = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {// à rectifier
+            LinkedList<WordToLetters> list = hashtable.get(i);
+        }
     }
 
 //    public int getSize(File file){
