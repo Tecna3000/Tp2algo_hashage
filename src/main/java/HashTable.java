@@ -3,26 +3,25 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class HashTable {
-    private ArrayList<LinkedList<WordToLetters>> hashtable;
-    private int size;
+    private ArrayList<LinkedList<WordToLetters>> hashTable;
+    private int length;
 
 
     public HashTable(ArrayList<WordToLetters>words) {
-        //this.size = size;
+        this.length = getLength();
         initialize();
     }
 
     public void initialize(){
-        this.hashtable = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {// à rectifier
-            LinkedList<WordToLetters> list = hashtable.get(i);
+        this.hashTable = new ArrayList<>();
+        for (int i = 0; i < length; i++) {
+            hashTable.add(new LinkedList<>());
         }
     }
 
-//    public int getSize(File file){
-//
-//
-//    }
+    public int getLength(){
+
+    }
 
 
 }
