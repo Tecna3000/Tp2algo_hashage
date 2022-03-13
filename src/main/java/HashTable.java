@@ -8,53 +8,57 @@ import java.util.Scanner;
 import static java.lang.Math.sqrt;
 
 public class HashTable {
-    public static ArrayList<LinkedList<WordToLetters>> hashTable;
-    private int length;
-    public static int filling;
+    public ArrayList<LinkedList<WordToLetters>> hashTable;
+    private final int length;
+    private final int filling;
 
 
     public HashTable(File filePath, int filling) throws FileNotFoundException {
         this.length = findPrimeNumber(filePath);
+        //System.out.println(this.length);
         initialize();
-        HashTable.filling = filling;
-        fillTable(filePath);
+        this.filling = filling;
+        System.out.println("constructeur: "+this.filling);
+        //fillTable(filePath);
     }
 
     public void initialize(){
-        hashTable = new ArrayList<>();
+        this.hashTable = new ArrayList<>();
         for (int i = 0; i < length; i++) {
             hashTable.add(new LinkedList<>());
         }
-    }
+        }
 
-    public static int computeFileLength(File filePath) throws FileNotFoundException {
+//    public void fillTable(File filePath) throws FileNotFoundException {
+//        Scanner file= new Scanner(filePath);
+//        while (file.hasNextLine()) {
+//            WordToLetters word = new WordToLetters(file.nextLine());
+//            int index = (int) findIndex(file.nextLine());
+//            this.hashTable.get(index).addFirst(word);
+//            System.out.println(word);
+//        }
+//    }
+
+    public int computeFileLength(File filePath) throws FileNotFoundException {
         Scanner file = new Scanner(filePath);
         int length = 0;
         while (file.hasNextLine()){
             file.nextLine();
             length++;
+
         }
       return length;
     }
 
-    public static void fillTable(File filePath) throws FileNotFoundException {
-        Scanner file= new Scanner(filePath);
-        while (file.hasNextLine()) {
-            WordToLetters word = new WordToLetters(file.nextLine());
-            int index = (int) findIndex(file.nextLine());
-            hashTable.get(index).addFirst(word);
-            System.out.println(word);
-        }
-    }
 
 
 
     // k/findPrimenumber
-    public static double findIndex(String word){
-        return (computeAlphabetValue(word)% filling);
+    public double findIndex(String word){
+        return (computeAlphabetValue(word)% this.filling);
     }
 
-    public static double computeAlphabetValue(String word){
+    public double computeAlphabetValue(String word){
         double value = 0;
         for(int index =0; index < word.length(); index++){
           int pow= (word.length()-(index+1));
@@ -66,16 +70,20 @@ public class HashTable {
 
     // le premier nb premier sup à nb delements/le aux de remplissage
     public int findPrimeNumber(File filePath) throws FileNotFoundException {
-        int start = (int) Math.ceil((double) computeFileLength(filePath)/ this.filling);
+        int length = computeFileLength(filePath);
+        int start = (int) Math.ceil((double) length/ this.filling);
+        System.out.println(this.filling);
+        System.out.println(start);
         for(int index = start;index< computeFileLength(filePath); index++) {
             if (isPrimeNumber(index)) {
                 return (index);
+
             }
         }
         return 0;
     }
 
-    public static boolean isPrimeNumber(int number) {
+    public boolean isPrimeNumber(int number) {
         if (number < 2) {
             return false;
         }
