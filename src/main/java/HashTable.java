@@ -5,13 +5,15 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import static java.lang.Math.sqrt;
+
 public class HashTable {
     private ArrayList<LinkedList<WordToLetters>> hashTable;
     private int length;
 
 
     public HashTable(File filePath) throws FileNotFoundException {
-        this.length = getLength(filePath);
+        this.length = findPrimeNumber(filePath);
         initialize();
     }
 
@@ -22,12 +24,13 @@ public class HashTable {
         }
     }
 
-    public int getLength(File filePath) throws FileNotFoundException {
+    public static int computeFileLength(File filePath) throws FileNotFoundException {
         Scanner file = new Scanner(filePath);
         int length = 0;
-        while (file.hasNextLine())
-          file.nextLine();
-          length++;
+        while (file.hasNextLine()){
+            file.nextLine();
+            length++;
+        }
       return length;
     }
 
@@ -35,19 +38,40 @@ public class HashTable {
         Scanner file= new Scanner(filePath);
         while (file.hasNextLine()) {
             WordToLetters word = new WordToLetters(file.nextLine());
-            int index = getIndex();
+            int index = findIndex();
             this.hashTable.get(index).addFirst(word);
             System.out.println(word);
         }
     }
 
-    public int getIndex(){
 
+
+    // k/findPrimenumber
+    public int findIndex(){
+        int index = 0;
+        return index;
     }
 
-    public int primeNumber(){
+    // le premier nb premier sup à nb delements/le aux de remplissage
+    public static int findPrimeNumber(File filePath) throws FileNotFoundException {
+        int filling = 3;
+        int start = (int) Math.ceil((double) computeFileLength(filePath)/ filling);
+        for(int index = start;index< computeFileLength(filePath); index++) {
+            if (isPrimeNumber(index)) {
+                return (index);
+            }
+        }
+        return 0;
+    }
 
-
+    public static boolean isPrimeNumber(int number) {
+        if (number < 2) {
+            return false;
+        }
+        for (int i = 2; i <= sqrt(number); ++i) {
+            if (number % i == 0) return false;
+        }
+        return true;
     }
 
 }
