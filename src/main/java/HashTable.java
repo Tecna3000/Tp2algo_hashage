@@ -8,17 +8,20 @@ import java.util.Scanner;
 import static java.lang.Math.sqrt;
 
 public class HashTable {
-    private ArrayList<LinkedList<WordToLetters>> hashTable;
+    public static ArrayList<LinkedList<WordToLetters>> hashTable;
     private int length;
+    public static int filling;
 
 
-    public HashTable(File filePath) throws FileNotFoundException {
+    public HashTable(File filePath, int filling) throws FileNotFoundException {
         this.length = findPrimeNumber(filePath);
         initialize();
+        HashTable.filling = filling;
+        fillTable(filePath);
     }
 
     public void initialize(){
-        this.hashTable = new ArrayList<>();
+        hashTable = new ArrayList<>();
         for (int i = 0; i < length; i++) {
             hashTable.add(new LinkedList<>());
         }
@@ -34,12 +37,12 @@ public class HashTable {
       return length;
     }
 
-    public void fillTable(File filePath) throws FileNotFoundException {
+    public static void fillTable(File filePath) throws FileNotFoundException {
         Scanner file= new Scanner(filePath);
         while (file.hasNextLine()) {
             WordToLetters word = new WordToLetters(file.nextLine());
-            int index = findIndex();
-            this.hashTable.get(index).addFirst(word);
+            int index = (int) findIndex(file.nextLine());
+            hashTable.get(index).addFirst(word);
             System.out.println(word);
         }
     }
@@ -47,26 +50,23 @@ public class HashTable {
 
 
     // k/findPrimenumber
-    public int findIndex(){
-        int index = 0;
-        return index;
+    public static double findIndex(String word){
+        return (computeAlphabetValue(word)% filling);
     }
 
-    public static int computeAlphabetValue(String word){
-        int value = 0;
+    public static double computeAlphabetValue(String word){
+        double value = 0;
         for(int index =0; index < word.length(); index++){
-            //System.out.println((Math.pow(256,(int)(word.charAt(index))-index))*80);
-
-            value= (int) (value+ (int)(word.charAt(index))*(Math.pow(256,(int)(word.charAt(index))-index)));
-            System.out.println(value);
+          int pow= (word.length()-(index+1));
+          double val = ( Math.pow(256,pow));
+            value= value +( (value+ (word.charAt(index))*val));
         }
         return value;
     }
 
     // le premier nb premier sup à nb delements/le aux de remplissage
-    public static int findPrimeNumber(File filePath) throws FileNotFoundException {
-        int filling = 3;
-        int start = (int) Math.ceil((double) computeFileLength(filePath)/ filling);
+    public int findPrimeNumber(File filePath) throws FileNotFoundException {
+        int start = (int) Math.ceil((double) computeFileLength(filePath)/ this.filling);
         for(int index = start;index< computeFileLength(filePath); index++) {
             if (isPrimeNumber(index)) {
                 return (index);
