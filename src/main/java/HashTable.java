@@ -52,6 +52,17 @@ public class HashTable {
         return index;
     }
 
+    public static int computeAlphabetValue(String word){
+        int value = 0;
+        for(int index =0; index < word.length(); index++){
+            //System.out.println((Math.pow(256,(int)(word.charAt(index))-index))*80);
+
+            value= (int) (value+ (int)(word.charAt(index))*(Math.pow(256,(int)(word.charAt(index))-index)));
+            System.out.println(value);
+        }
+        return value;
+    }
+
     // le premier nb premier sup à nb delements/le aux de remplissage
     public static int findPrimeNumber(File filePath) throws FileNotFoundException {
         int filling = 3;
