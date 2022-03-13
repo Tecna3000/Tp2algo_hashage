@@ -19,7 +19,7 @@ public class HashTable {
         initialize();
         this.filling = filling;
         System.out.println("constructeur: "+this.filling);
-        //fillTable(filePath);
+       fillTable(filePath);
     }
 
     public void initialize(){
@@ -29,15 +29,16 @@ public class HashTable {
         }
         }
 
-//    public void fillTable(File filePath) throws FileNotFoundException {
-//        Scanner file= new Scanner(filePath);
-//        while (file.hasNextLine()) {
-//            WordToLetters word = new WordToLetters(file.nextLine());
-//            int index = (int) findIndex(file.nextLine());
-//            this.hashTable.get(index).addFirst(word);
-//            System.out.println(word);
-//        }
-//    }
+    public void fillTable(File filePath) throws FileNotFoundException {
+        Scanner file= new Scanner(filePath);
+        while (file.hasNextLine()) {
+            WordToLetters word = new WordToLetters(file.nextLine());
+            int key = (int) findKey(file.nextLine());
+            this.hashTable.get(key).addFirst(word);
+
+        }
+        //System.out.println(this.hashTable);
+    }
 
     public int computeFileLength(File filePath) throws FileNotFoundException {
         Scanner file = new Scanner(filePath);
@@ -54,7 +55,7 @@ public class HashTable {
 
 
     // k/findPrimenumber
-    public double findIndex(String word){
+    public double findKey(String word){
         return (computeAlphabetValue(word)% this.filling);
     }
 
@@ -71,7 +72,7 @@ public class HashTable {
     // le premier nb premier sup à nb delements/le aux de remplissage
     public int findPrimeNumber(File filePath) throws FileNotFoundException {
         int length = computeFileLength(filePath);
-        int start = (int) Math.ceil((double) length/ this.filling);
+        int start = (int) Math.ceil((double) length/ 3);
         System.out.println(this.filling);
         System.out.println(start);
         for(int index = start;index< computeFileLength(filePath); index++) {
@@ -93,4 +94,18 @@ public class HashTable {
         return true;
     }
 
+    public String toString() {
+        String toString = "{\n";
+        for(LinkedList list : hashTable) {
+            if (list.size() > 0) {
+                toString += "  "+ hashTable.indexOf(list)+": ";
+                for(Object word : list) {
+
+                    toString += word.toString()+", ";
+                }
+                toString += "\n";
+            }
+        }
+        return toString+"}";
+    }
 }
