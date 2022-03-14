@@ -26,9 +26,12 @@ public class WordToLetters {
     }
     // tout marche à ne pas changer
     public String toString(){
+        arrayOfLetters = word.toCharArray();
+        sort(arrayOfLetters);
         String letters = "[";
-        for(int index =0; index< word.length(); index++){
-            letters = letters + word.charAt(index) + (",");
+        for (char arrayOfLetter : arrayOfLetters) {
+            letters = letters + arrayOfLetter + (",");
+            //System.out.println(arrayOfLetters[i]);
         }
         letters= letters + ("]: ")+word  ;
         return letters;
