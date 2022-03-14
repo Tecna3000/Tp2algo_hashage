@@ -11,6 +11,10 @@ public class WordToLetters {
     private static char[] arrayOfLetters;
     private final String word;
 
+    public String getWord() {
+        return word;
+    }
+
     public WordToLetters(String word) {
         this.word = word;
         arrayOfLetters = word.toCharArray();
@@ -38,13 +42,60 @@ public class WordToLetters {
         return letters;
     }
 
-   //vérifi si la word1 contient word2
+
+    static String firstword;
+    public static ArrayList<Character> existWord(HashTable hashTable, String mixedWord) {
+        WordToLetters word = new WordToLetters(mixedWord);
+        ArrayList<Character> complementary = new ArrayList<>();
+        for (LinkedList<WordToLetters> list : hashTable.getHashTable()) {
+            for( WordToLetters wrd: list){
+                System.out.println(wrd.getWord());
+                if (contains(mixedWord,wrd.getWord())){
+                    firstword = wrd.toString();
+                    list.remove(wrd);
+                    int i = 0;int j =0;
+                    while(i< mixedWord.length() || j< wrd.getWord().length()){
+                        if(i< mixedWord.length() ){
+                            if (j< (wrd.getWord().length())){
+                                if(mixedWord.charAt(i) == wrd.getWord().charAt(j)){
+                                    i++;
+                                    j++;
+                                }else if(i<mixedWord.length() && j <wrd.getWord().length()){
+                                    complementary.add(mixedWord.charAt(i));
+                                    i++;
+                                }
+                            }
+
+                        }
+                        return complementary;
+                    }
+                }
+            }
+
+        }
+        return complementary;
+    }
+
+//    public boolean existComplementary(){
+//
+//    }
+//
+//    public ArrayList<Character> getComplementary(){
+//
+//    }
+
+   //vérifie si la word1 contient word2
     public static boolean contains(String word1, String word2) {
         int count = 0;
-        for (int i = 0; i < word2.length(); i++) {
-            if (word1.charAt(i) == word2.charAt(count)) {
-                count++;
+        for (int index = 0; index < word2.length(); index++) {
+            if(count< word2.length()){
+                if (word1.charAt(index) == word2.charAt(count)) {
+                    count++;
+                }
+            }else{
+                break;
             }
+
         }
         return (count == word2.length());
     }
