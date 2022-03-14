@@ -9,7 +9,9 @@ public class Main {
         File file = new File("src/main/resources/minidico.txt");
         HashTable dict = new HashTable(file,3);
 
-        System.out.println(dict);
+       //System.out.println(dict);
+
+       System.out.println(WordToLetters.contains("abcdef","abcd"));
 
     }
 }

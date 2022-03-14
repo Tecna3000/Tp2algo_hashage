@@ -122,4 +122,8 @@ public class HashTable {
         }
         return toString+"}";
     }
+
+    public ArrayList<LinkedList<WordToLetters>> getHashTable() {
+        return hashTable;
+    }
 }
