@@ -27,14 +27,18 @@ public class HashTable {
 
     public void fillTable(File filePath) throws FileNotFoundException {
         Scanner file= new Scanner(filePath);
-        while (file.hasNextLine()) {
-            WordToLetters word = new WordToLetters(file.nextLine());
-            int key = (int) findKey(file.nextLine());
-            //todo : laffichage s'arrete à 133 no line found
-            this.hashTable.get(key).addFirst(word);
-            System.out.println(key);
+        try {
+            while (file.hasNextLine()) {
+                WordToLetters word = new WordToLetters(file.nextLine());
+                int key = (int) findKey(file.nextLine());
+                //todo : laffichage s'arrete à 133 no line found
+                this.hashTable.get(key).addFirst(word);
         }
-        //System.out.println(this.hashTable);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public int computeNbOfElements(File filePath) throws FileNotFoundException {
@@ -54,13 +58,28 @@ public class HashTable {
         return (computeAlphabetValue(word)% this.length);
     }
 
-    //todo : il faut chercher la valeur du worltoletters et pas du string
-    public double computeAlphabetValue(String word){
+//    //todo : il faut chercher la valeur du worltoletters et pas du string
+//    public static double computeAlphabetValue(String word){
+//        WordToLetters w = new WordToLetters(word);
+//        double value = 0;
+//        for(int index =0; index < word.length(); index++){
+//          int pow= (word.length()-(index+1));
+//          double val = ( Math.pow(256,pow));
+//            value= value+ ((word.charAt(index))*val);
+//            System.out.println(value);
+//        }
+//        return value;
+//    }
+
+    public static double computeAlphabetValue(String word){
+        WordToLetters w = new WordToLetters(word);
         double value = 0;
-        for(int index =0; index < word.length(); index++){
-          int pow= (word.length()-(index+1));
-          double val = ( Math.pow(256,pow));
-            value= value +( (value+ (word.charAt(index))*val));
+        int size = word.length();
+        for(int index =0; index < size; index++){
+            int pow= (size-(index+1));
+            double val = ( Math.pow(256,pow));
+            char letter = (char) WordToLetters.elementsOf(w).get(index);
+            value= value + (((int)letter)*val);
         }
         return value;
     }

@@ -9,7 +9,7 @@ public class Main {
         File file = new File("src/main/resources/minidico.txt");
         HashTable dict = new HashTable(file,5);
 
-        //System.out.println(dict);
+        System.out.println(dict);
 
     }
 }
