@@ -31,14 +31,15 @@ public class HashTable {
             while (file.hasNextLine()) {
                 WordToLetters word = new WordToLetters(file.nextLine());
                 int key = (int) findKey(file.nextLine());
-                //todo : laffichage s'arrete à 133 no line found
+                //todo :erreur no line found
                 this.hashTable.get(key).addFirst(word);
-        }
-
+            }
+            file.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public int computeNbOfElements(File filePath) throws FileNotFoundException {

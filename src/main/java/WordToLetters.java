@@ -31,7 +31,6 @@ public class WordToLetters {
         String letters = "[";
         for (char arrayOfLetter : arrayOfLetters) {
             letters = letters + arrayOfLetter + (",");
-            //System.out.println(arrayOfLetters[i]);
         }
         letters= letters + ("]: ")+word  ;
         return letters;
