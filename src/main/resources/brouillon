@@ -20,3 +20,67 @@
            }
            return value;
        }
+
+       //    public static double computeAlphabetValue(String word){
+       //        WordToLetters w = new WordToLetters(word);
+       //        double value = 0;
+       //        int size = word.length();
+       //        for(int index =0; index < size; index++){
+       //            int pow= (size-(index+1));
+       //            double val = ( Math.pow(256,pow));
+       //            char letter = (char) WordToLetters.elementsOf(w).get(index);
+       //            value= value + (((int)letter)*val);
+       //        }
+       //        return value;
+       //    }
+
+
+
+
+
+    static String firstword;
+    public static ArrayList<Character> existWord(HashTable hashTable, String mixedWord) {
+        WordToLetters word = new WordToLetters(mixedWord);
+        ArrayList<Character> complementary = new ArrayList<>();
+        for (LinkedList<WordToLetters> list : hashTable.getHashTable()) {
+            for( WordToLetters wrd: list){
+                System.out.println(wrd.getWord());
+                if (contains(mixedWord,wrd.getWord())){
+                    firstword = wrd.toString();
+                    list.remove(wrd);
+                    int i = 0;int j =0;
+                    while(i< mixedWord.length() || j< wrd.getWord().length()){
+                        if(i< mixedWord.length() ){
+                            if (j< (wrd.getWord().length())){
+                                if(mixedWord.charAt(i) == wrd.getWord().charAt(j)){
+                                    i++;
+                                    j++;
+                                }else if(i<mixedWord.length() && j <wrd.getWord().length()){
+                                    complementary.add(mixedWord.charAt(i));
+                                    i++;
+                                }
+                            }
+
+                        }
+                        return complementary;
+                    }
+                }
+            }
+
+        }
+        return complementary;
+    }
+public static void main(String[] args) {
+        String str = "yellow";
+        char[] charSearch = {'y','e','w'};
+        for(int i=0; i<str.length(); i++)
+        {
+            char chr = str.charAt(i);
+            for(int j=0; j<charSearch.length; j++)
+            {
+                if(charSearch[j] == chr)
+                {
+                    System.out.println("Char Value "+charSearch[j]+" is present in "+str);
+                }
+            }
+        }

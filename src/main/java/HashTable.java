@@ -59,7 +59,7 @@ public class HashTable {
         return (computeAlphabetValue(word)% this.length);
     }
 
-//    //todo : il faut chercher la valeur du worltoletters et pas du string
+
     public static double computeAlphabetValue(String word){
         WordToLetters w = new WordToLetters(word);
         double value = 0;
@@ -71,18 +71,6 @@ public class HashTable {
         return value;
     }
 
-//    public static double computeAlphabetValue(String word){
-//        WordToLetters w = new WordToLetters(word);
-//        double value = 0;
-//        int size = word.length();
-//        for(int index =0; index < size; index++){
-//            int pow= (size-(index+1));
-//            double val = ( Math.pow(256,pow));
-//            char letter = (char) WordToLetters.elementsOf(w).get(index);
-//            value= value + (((int)letter)*val);
-//        }
-//        return value;
-//    }
 
     // le premier nb premier sup à nb delements/le taux de remplissage
     public int findPrimeNumber(File filePath,int filling) throws FileNotFoundException {

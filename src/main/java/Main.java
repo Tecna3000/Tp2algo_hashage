@@ -11,10 +11,10 @@ public class Main {
 
        //System.out.println(dict);
 
+      System.out.println(WordToLetters.contains("abcdef","ll"));
 
-
-      System.out.println(WordToLetters.existWord(dict,"AbymesAbyssinie"));
-      System.out.println(WordToLetters.firstword);
+//      System.out.println(WordToLetters.existWord(dict,"AbymesAbyssinie"));
+//      System.out.println(WordToLetters.firstword);
 
     }
 }
