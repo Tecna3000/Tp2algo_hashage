@@ -15,13 +15,13 @@ public class WordToLetters {
 
     public WordToLetters(String word) {
         this.word = word;
-        arrayOfLetters = word.toCharArray();
+        this.arrayOfLetters = word.toCharArray();
         sort(arrayOfLetters);
 
     }
 
     public char[] getArrayOfLetters(){
-        return arrayOfLetters;
+        return this.arrayOfLetters;
     }
 
     public List elementsOf(WordToLetters word) {
@@ -71,4 +71,5 @@ public class WordToLetters {
         }
         return false;
     }
+
 }

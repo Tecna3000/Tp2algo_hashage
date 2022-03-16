@@ -2,6 +2,7 @@ package main.java;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -30,7 +31,7 @@ public class HashTable {
         try {
             while (file.hasNextLine()) {
                 WordToLetters word = new WordToLetters(file.nextLine());
-                int key = (int) findKey(word.toString());
+                int key = (int) findKey(word.getArrayOfLetters());
                 this.hashTable.get(key).addFirst(word);
             }
             file.close();
@@ -54,18 +55,17 @@ public class HashTable {
 
 
     // k mod findPrimenumber
-    public double findKey(String word){
+    public double findKey(char[] word){
         return (computeAlphabetValue(word)% this.length);
     }
 
 
-    public static double computeAlphabetValue(String word){
-        WordToLetters w = new WordToLetters(word);
+    public double computeAlphabetValue(char[] word){
         double value = 0;
-        for(int index =0; index < word.length(); index++){
-          int pow= (word.length()-(index+1));
+        for(int index =0; index < word.length; index++){
+          int pow= (word.length-(index+1));
           double val = ( Math.pow(256,pow));
-            value= value+ ((word.charAt(index))*val);
+            value= value+ ((word[index]*val) % this.length);
         }
         return value;
     }
@@ -117,20 +117,29 @@ public class HashTable {
 
 
 
-    public boolean existWord(char[] mixedWord) {
+    public boolean findWord(char[] mixedWord) {
         ArrayList<Character> complementary = new ArrayList<>();
         for (LinkedList<WordToLetters> list : hashTable) {
             for (WordToLetters word : list) {
-                System.out.println(word.getWord() +" : "+ mixedWord);
+                System.out.println(word.getWord() +" : "+ Arrays.toString(mixedWord));
                 if (word.contains(mixedWord)) {
-                    System.out.println("k\n");
-
+                    //WordToLetters wordFound =
                     return true;
 
                 }
             }
         }
         return false;
+    }
+
+    public WordToLetters searchWord(char[] word) {
+        if (word == null) return null;
+
+        int key = (int) findKey (word);
+        for (WordToLetters letters : this.hashTable.get(key)) {
+            if ( Arrays.equals( word ,letters.getArrayOfLetters()) ) return letters;
+        }
+        return null;
     }
 
 }
