@@ -31,7 +31,6 @@ public class HashTable {
             while (file.hasNextLine()) {
                 WordToLetters word = new WordToLetters(file.nextLine());
                 int key = (int) findKey(word.toString());
-                //todo :erreur no line found
                 this.hashTable.get(key).addFirst(word);
             }
             file.close();

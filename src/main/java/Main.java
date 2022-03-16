@@ -10,11 +10,17 @@ public class Main {
         HashTable dict = new HashTable(file,3);
 
        //System.out.println(dict);
+        //pour tester contains
+//        String mot1 = "abcdef";
+//        String mot2 = "cc";
+//
+//        WordToLetters m1 = new WordToLetters(mot1);
+//        WordToLetters m2 = new WordToLetters(mot2);
+//        System.out.println(m2.getArrayOfLetters());
+//        System.out.println(m2.contains(m1.getArrayOfLetters()));
 
-      System.out.println(WordToLetters.contains("abcdef","ll"));
-
-//      System.out.println(WordToLetters.existWord(dict,"AbymesAbyssinie"));
-//      System.out.println(WordToLetters.firstword);
+      System.out.println(WordToLetters.existWord(dict,"AbymesAbyssinie"));
+      System.out.println(WordToLetters.firstword);
 
     }
 }

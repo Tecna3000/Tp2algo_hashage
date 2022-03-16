@@ -1,14 +1,12 @@
 package main.java;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static java.util.Arrays.sort;
 
 public class WordToLetters {
 
-    private static char[] arrayOfLetters;
+    private char[] arrayOfLetters;
     private final String word;
 
     public String getWord() {
@@ -22,7 +20,11 @@ public class WordToLetters {
 
     }
 
-    public static List elementsOf(WordToLetters word) {
+    public char[] getArrayOfLetters(){
+        return arrayOfLetters;
+    }
+
+    public List elementsOf(WordToLetters word) {
         List<Character> elements = new ArrayList<Character>();
         for (char element : arrayOfLetters) {
             elements.add(element);
@@ -49,8 +51,7 @@ public class WordToLetters {
         ArrayList<Character> complementary = new ArrayList<>();
         for (LinkedList<WordToLetters> list : hashTable.getHashTable()) {
             for (WordToLetters word : list) {
-                System.out.println(word.getWord());
-                if (contains(mixedWord, word.getWord())) {
+                if (word.contains(mixedWord.toCharArray())) {
                     firstword = word.toString();
 
                 }
@@ -69,31 +70,20 @@ public class WordToLetters {
 //    }
 
     //vérifie si la word1 contient word2 marche que sur une sous chaine
-//    public static boolean contains(String word1, String word2) {
-//        int count = 0;
-//        for (int index = 0; index < word2.length(); index++) {
-//            if (count < word2.length()) {
-//                if (word1.charAt(index) == word2.charAt(count)) {
-//                    count++;
-//                }
-//            } else {
-//                break;
-//            }
-//
-//        }
-//        return (count == word2.length());
-//    }
 
-    public static boolean contains(String word1, String word2) {
-        int count=0;
-        for (int i = 0; i < word1.length(); i++) {
-            char chr = word1.charAt(i);
-            for (int j = 0; j < word2.length(); j++) {
-                if (word2.charAt(j) == chr) {
-                    count++;
+    public boolean contains(char[] givenWord) {
+        int count = 0;
+        for (char letter: givenWord) {
+            if (letter == arrayOfLetters[count]) {
+                count++;
+                if(count == arrayOfLetters.length){
+                    return true;
                 }
             }
+            if (letter > arrayOfLetters[count]){
+                return false;
+            }
         }
-        return (count== word2.length());
+        return false;
     }
 }
