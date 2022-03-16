@@ -45,21 +45,6 @@ public class WordToLetters {
     }
 
 
-    static String firstword;
-
-    public static boolean existWord(HashTable hashTable, String mixedWord) {
-        ArrayList<Character> complementary = new ArrayList<>();
-        for (LinkedList<WordToLetters> list : hashTable.getHashTable()) {
-            for (WordToLetters word : list) {
-                if (word.contains(mixedWord.toCharArray())) {
-                    firstword = word.toString();
-
-                }
-            }
-        }
-        return false;
-    }
-
 
 //    public boolean existComplementary(){
 //

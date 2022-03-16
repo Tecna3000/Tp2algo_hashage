@@ -19,8 +19,8 @@ public class Main {
 //        System.out.println(m2.getArrayOfLetters());
 //        System.out.println(m2.contains(m1.getArrayOfLetters()));
 
-      System.out.println(WordToLetters.existWord(dict,"AbymesAbyssinie"));
-      System.out.println(WordToLetters.firstword);
+      System.out.println(dict.existWord("AbymesAbyssinia"));
+
 
     }
 }

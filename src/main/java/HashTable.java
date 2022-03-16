@@ -113,4 +113,24 @@ public class HashTable {
     public ArrayList<LinkedList<WordToLetters>> getHashTable() {
         return hashTable;
     }
+
+
+
+
+    public boolean existWord(String mixedWord) {
+        ArrayList<Character> complementary = new ArrayList<>();
+        for (LinkedList<WordToLetters> list : hashTable) {
+            for (WordToLetters word : list) {
+                System.out.println(word.getWord() +" : "+ mixedWord);
+                if (word.contains(mixedWord.toCharArray())) {
+                    System.out.println("k\n");
+
+                    return true;
+
+                }
+            }
+        }
+        return false;
+    }
+
 }
