@@ -18,8 +18,8 @@ public class Main {
 //        WordToLetters m2 = new WordToLetters(mot2);
 //        System.out.println(m2.getArrayOfLetters());
 //        System.out.println(m2.contains(m1.getArrayOfLetters()));
-
-      System.out.println(dict.existWord("AbymesAbyssinia"));
+        WordToLetters m1 = new WordToLetters("miroirmœurs");
+      System.out.println(dict.existWord(m1.getArrayOfLetters()));
 
 
     }

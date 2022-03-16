@@ -117,12 +117,12 @@ public class HashTable {
 
 
 
-    public boolean existWord(String mixedWord) {
+    public boolean existWord(char[] mixedWord) {
         ArrayList<Character> complementary = new ArrayList<>();
         for (LinkedList<WordToLetters> list : hashTable) {
             for (WordToLetters word : list) {
                 System.out.println(word.getWord() +" : "+ mixedWord);
-                if (word.contains(mixedWord.toCharArray())) {
+                if (word.contains(mixedWord)) {
                     System.out.println("k\n");
 
                     return true;
