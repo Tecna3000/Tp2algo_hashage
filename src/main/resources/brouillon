@@ -84,3 +84,22 @@ public static void main(String[] args) {
                 }
             }
         }
+
+
+        final int wordLength = sortedWord.length;
+                if (this.sumLength <= sortedWord.length) return null;
+
+                final char[] compatibleWord = new char[this.sumLength - wordLength];
+                int compatibleWordIndex = 0;
+                int sortedWordIndex = 0;
+
+                for (int wordSumIndex = 0; wordSumIndex < this.sumLength; wordSumIndex++) {
+                    if ( sortedWordIndex < wordLength && sortedWord[sortedWordIndex] == this.wordSum[wordSumIndex])
+                        sortedWordIndex++;
+                    else {
+                        compatibleWord[compatibleWordIndex] = this.wordSum[wordSumIndex];
+                        compatibleWordIndex++;
+                    }
+                }
+                return compatibleWord;
+            }

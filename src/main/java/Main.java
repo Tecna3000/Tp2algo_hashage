@@ -1,6 +1,7 @@
 package main.java;
 
 import java.io.File;
+import java.util.Arrays;
 
 
 public class Main {
@@ -10,8 +11,9 @@ public class Main {
         HashTable dict = new HashTable(file,3);
 
        //System.out.println(dict);
-        MultiSet given = new MultiSet("abcde");
+
+        MultiSet given = new MultiSet("abcdef");
         MultiSet th = new MultiSet("abc");
-      System.out.println("complementary is : "+th.complementary(given));
+      System.out.println("complementary is : "+ Arrays.toString(given.complementary(th)));
     }
 }

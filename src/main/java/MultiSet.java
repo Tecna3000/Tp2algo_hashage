@@ -1,14 +1,13 @@
 package main.java;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static java.util.Arrays.sort;
 
 public class MultiSet {
 
     private char[] arrayOfLetters;
-    private final String word;
+    private  String word;
 
 
 
@@ -26,9 +25,9 @@ public class MultiSet {
         return this.arrayOfLetters;
     }
 
-    public List elementsOf(MultiSet word) {
-        List<Character> elements = new ArrayList<Character>();
-        for (char element : arrayOfLetters) {
+    public ArrayList<Character> elementsOf(MultiSet word) {
+        ArrayList<Character> elements = new ArrayList<>();
+        for (char element : word.getArrayOfLetters()) {
             elements.add(element);
         }
         return elements;
@@ -82,17 +81,38 @@ public class MultiSet {
 
 
     // methode qui retourne le complementaire de this par rapport a given word
-    public MultiSet complementary( MultiSet givenWord) {
+    public char[] complementary(MultiSet givenWord) {
+//        int wordLength = givenWord.getArrayOfLetters().length;
+//        if (this.getArrayOfLetters().length > wordLength) return null;
+//
+//        MultiSet complementary = new MultiSet(givenWord.getWord());
+//        for (Character c : givenWord.getArrayOfLetters() ) {
+//            if (!complementary.remove(c)) {
+//                return null;
+//            }
+//
+//
+//            System.out.println(c);
+//        }
+//        System.out.println(complementary );
+//        return complementary;
+//    }
         int wordLength = givenWord.getArrayOfLetters().length;
-        if (this.getArrayOfLetters().length > wordLength) return null;
+        int thisLength =this.arrayOfLetters.length;
+        if (thisLength<= wordLength) return null;
 
-        MultiSet complementary = new MultiSet(givenWord.getWord());
-        for (Character c : this.getArrayOfLetters() ) {
-            if (!complementary.remove(c)) {
-                return null;
+        char [] complementary = new char[thisLength - wordLength];
+        int givenIndex= 0;
+        int compIndex = 0;
+        for (int thisIndex = 0; thisIndex < thisLength; thisIndex++) {
+            if ( givenIndex < wordLength && givenWord.arrayOfLetters[givenIndex] == this.arrayOfLetters[thisIndex])
+                givenIndex++;
+            else {
+                System.out.println(this.arrayOfLetters[thisIndex]);
+                complementary[compIndex] = this.arrayOfLetters[thisIndex];
+                compIndex++;
             }
         }
-        System.out.println(complementary );
         return complementary;
     }
 
