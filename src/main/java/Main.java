@@ -10,9 +10,8 @@ public class Main {
         HashTable dict = new HashTable(file,3);
 
        //System.out.println(dict);
-        WordToLetters m1 = new WordToLetters("bailliage");
-      System.out.println(dict.searchWord(m1.getArrayOfLetters()));
-
-
+        MultiSet given = new MultiSet("abcde");
+        MultiSet th = new MultiSet("abc");
+      System.out.println("complementary is : "+th.complementary(given));
     }
 }

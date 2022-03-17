@@ -9,7 +9,12 @@ import java.util.Scanner;
 import static java.lang.Math.sqrt;
 
 public class HashTable {
-    public ArrayList<LinkedList<WordToLetters>> hashTable;
+    public ArrayList<LinkedList<MultiSet>> hashTable;
+
+    public int getLength() {
+        return length;
+    }
+
     private final int length;
 
 
@@ -30,7 +35,7 @@ public class HashTable {
         Scanner file= new Scanner(filePath);
         try {
             while (file.hasNextLine()) {
-                WordToLetters word = new WordToLetters(file.nextLine());
+                MultiSet word = new MultiSet(file.nextLine());
                 int key = (int) findKey(word.getArrayOfLetters());
                 this.hashTable.get(key).addFirst(word);
             }
@@ -110,7 +115,7 @@ public class HashTable {
         return toString+"}";
     }
 
-    public ArrayList<LinkedList<WordToLetters>> getHashTable() {
+    public ArrayList<LinkedList<MultiSet>> getHashTable() {
         return hashTable;
     }
 
@@ -119,8 +124,8 @@ public class HashTable {
 
     public boolean findWord(char[] mixedWord) {
         ArrayList<Character> complementary = new ArrayList<>();
-        for (LinkedList<WordToLetters> list : hashTable) {
-            for (WordToLetters word : list) {
+        for (LinkedList<MultiSet> list : hashTable) {
+            for (MultiSet word : list) {
                 System.out.println(word.getWord() +" : "+ Arrays.toString(mixedWord));
                 if (word.contains(mixedWord)) {
                     //WordToLetters wordFound =
@@ -132,14 +137,17 @@ public class HashTable {
         return false;
     }
 
-    public WordToLetters searchWord(char[] word) {
+    public MultiSet searchWord(char[] word) {
         if (word == null) return null;
 
         int key = (int) findKey (word);
-        for (WordToLetters letters : this.hashTable.get(key)) {
+        for (MultiSet letters : this.hashTable.get(key)) {
             if ( Arrays.equals( word ,letters.getArrayOfLetters()) ) return letters;
         }
         return null;
     }
 
+    public LinkedList<MultiSet> get(int index) {
+        return this.hashTable.get(index);
+    }
 }
