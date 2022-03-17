@@ -7,7 +7,7 @@ import static java.util.Arrays.sort;
 public class MultiSet {
 
     private char[] arrayOfLetters;
-    private  String word;
+    private final String word;
 
 
 
@@ -61,9 +61,9 @@ public class MultiSet {
 
     //vérifie si  word1 contient word2 marche
 
-    public boolean contains(char[] givenWord) {
+    public boolean contains( MultiSet givenWord) {
         int count = 0;
-        for (char letter: givenWord) {
+        for (char letter: givenWord.getArrayOfLetters()) {
             if (letter == arrayOfLetters[count]) {
                 count++;
                 if(count == arrayOfLetters.length){
@@ -78,25 +78,8 @@ public class MultiSet {
     }
 
 
-
-
     // methode qui retourne le complementaire de this par rapport a given word
     public char[] complementary(MultiSet givenWord) {
-//        int wordLength = givenWord.getArrayOfLetters().length;
-//        if (this.getArrayOfLetters().length > wordLength) return null;
-//
-//        MultiSet complementary = new MultiSet(givenWord.getWord());
-//        for (Character c : givenWord.getArrayOfLetters() ) {
-//            if (!complementary.remove(c)) {
-//                return null;
-//            }
-//
-//
-//            System.out.println(c);
-//        }
-//        System.out.println(complementary );
-//        return complementary;
-//    }
         int wordLength = givenWord.getArrayOfLetters().length;
         int thisLength =this.arrayOfLetters.length;
         if (thisLength<= wordLength) return null;
@@ -115,5 +98,4 @@ public class MultiSet {
         }
         return complementary;
     }
-
 }

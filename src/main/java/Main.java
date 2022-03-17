@@ -7,13 +7,14 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        File file = new File("src/main/resources/minidico.txt");
-        HashTable dict = new HashTable(file,3);
+        File file1 = new File("src/main/resources/minidico.txt");
+        HashTable minidico = new HashTable(file1,3);
 
-       //System.out.println(dict);
+        File file2 = new File("src/main/resources/dico.txt");
+        HashTable dico = new HashTable(file2,100);
 
-        MultiSet given = new MultiSet("abcdef");
-        MultiSet th = new MultiSet("abc");
-      System.out.println("complementary is : "+ Arrays.toString(given.complementary(th)));
+        MultiSet mixesWord = new MultiSet("abaeltaccatagmie");
+        System.out.println(Arrays.toString(dico.findTwoWords( mixesWord)));
+
     }
 }

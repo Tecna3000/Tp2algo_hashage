@@ -120,27 +120,31 @@ public class HashTable {
     }
 
 
-
-
-    public boolean findWord(char[] mixedWord) {
-        ArrayList<Character> complementary = new ArrayList<>();
+    public MultiSet[] findTwoWords(MultiSet mixedWord) {
+        System.out.println(this);
+        final MultiSet[] foundWords = new MultiSet[2];
         for (LinkedList<MultiSet> list : hashTable) {
             for (MultiSet word : list) {
-                System.out.println(word.getWord() +" : "+ Arrays.toString(mixedWord));
+               // System.out.println(word.getWord() +" : "+ Arrays.toString(mixedWord));
                 if (word.contains(mixedWord)) {
-                    //WordToLetters wordFound =
-                    return true;
-
+                    foundWords[0] = word;
+                    char[] complementary = mixedWord.complementary(word);
+                    MultiSet comp = this.findWord(complementary);
+                    System.out.println(comp);
+                    System.out.println(complementary);
+                    foundWords[1] = comp;
+                    return foundWords;
                 }
             }
         }
-        return false;
+        return null;
     }
 
-    public MultiSet searchWord(char[] word) {
+    public MultiSet findWord(char[] word) {
         if (word == null) return null;
 
         int key = (int) findKey (word);
+        System.out.println(key);
         for (MultiSet letters : this.hashTable.get(key)) {
             if ( Arrays.equals( word ,letters.getArrayOfLetters()) ) return letters;
         }
