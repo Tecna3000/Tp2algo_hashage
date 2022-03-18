@@ -119,7 +119,6 @@ public class HashTable {
         }
         return toString+"}";
     }
-
 //-------------------------------------------------------------------------LA 2-SOMME-----------------------------------------------------------------------------------
 
     public MultiSet[] findTwoWords(MultiSet mixedWord) {
