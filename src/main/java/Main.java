@@ -10,12 +10,15 @@ public class Main {
           File file1 = new File("src/main/resources/minidico.txt");
           HashTable minidico = new HashTable(file1,3);
 
+
         File file2 = new File("src/main/resources/dico.txt");
         HashTable dico = new HashTable(file2,3);
+
         long start = System.currentTimeMillis() ;
         showSums(minidico,dico);
         long end = System.currentTimeMillis();
         double temp = (end-start)/1000.0;
+
         System.out.println("To find twosums the programme takes "+ temp + "second");
 
     }
