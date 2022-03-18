@@ -21,7 +21,7 @@ public class Main {
     }
     public static void showSums(HashTable miniDico,  HashTable dico) {
         System.out.println("\n         ---------Sets of twoSums found for minidico--------- \n");
-        System.out.println(twoSums(miniDico, "adeeiilnnnorux") );
+        System.out.println(twoSums(miniDico, "adeeiilnnnorux"));
 
         System.out.println("\n         ----------Sets of twoSums found for dico---------- \n");
         System.out.println(twoSums(dico, "abeeiiillnnorrsstyzé"));
