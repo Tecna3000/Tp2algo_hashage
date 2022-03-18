@@ -18,14 +18,14 @@ public class Main {
 
     }
     public static void showSums( HashTable miniDico,  HashTable dico) {
-        System.out.println("\n Sets of twoSums found for minidico \n");
+        System.out.println("\n         ---------Sets of twoSums found for minidico--------- \n");
         System.out.println(
                         twoSums(miniDico, "démanrenommétèlement") + "\n" +
                         twoSums(miniDico, "violemment") + "\n" +
                         twoSums(miniDico, "résonancœuvree")
         );
 
-        System.out.println("\nSets of twoSums found for dico \n");
+        System.out.println("\n         ----------Sets of twoSums found for dico---------- \n");
         System.out.println(
                         twoSums(dico, "fusasludionssent") + "\n" +
                         twoSums(dico, "salopeludionsraient") + "\n" +
