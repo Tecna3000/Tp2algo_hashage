@@ -27,11 +27,12 @@ public class Main {
 
         System.out.println("\nSets of twoSums found for dico \n");
         System.out.println(
-                        twoSums(dico, "fusassent") + "\n" +
-                        twoSums(dico, "saloperaient") + "\n" +
-                        twoSums(dico, "louverez"));
+                        twoSums(dico, "fusasludionssent") + "\n" +
+                        twoSums(dico, "salopeludionsraient") + "\n" +
+                        twoSums(dico, "louverludionsez"));
 
     }
+
     public static String twoSums(HashTable hashTable, String word) {
         MultiSet mixedWord = new MultiSet(word);
         MultiSet[] twoSums  = hashTable.findTwoWords(mixedWord);

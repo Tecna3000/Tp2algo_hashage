@@ -10,12 +10,8 @@ import static java.lang.Math.sqrt;
 
 public class HashTable {
     public ArrayList<LinkedList<MultiSet>> hashTable;
-
-    public int getLength() {
-        return length;
-    }
-
     private final int length;
+
 
 
     public HashTable(File filePath, int filling) throws FileNotFoundException {
@@ -29,6 +25,14 @@ public class HashTable {
         for (int i = 0; i < length; i++) {
             hashTable.add(new LinkedList<>());
         }
+    }
+
+    public int getLength() {return length;}
+    public ArrayList<LinkedList<MultiSet>> getHashTable() {
+        return hashTable;
+    }
+    public LinkedList<MultiSet> get(int index) {
+        return this.hashTable.get(index);
     }
 
     public void fillTable(File filePath) throws FileNotFoundException {
@@ -47,16 +51,6 @@ public class HashTable {
 
     }
 
-    public int computeNbOfElements(File filePath) throws FileNotFoundException {
-        Scanner file = new Scanner(filePath);
-        int length = 0;
-        while (file.hasNextLine()){
-            file.nextLine();
-            length++;
-
-        }
-      return length;
-    }
 
 
     // k mod findPrimenumber
@@ -75,8 +69,19 @@ public class HashTable {
         return value;
     }
 
+    // compte le nombre d'élements du file
+    public int computeNbOfElements(File filePath) throws FileNotFoundException {
+        Scanner file = new Scanner(filePath);
+        int length = 0;
+        while (file.hasNextLine()){
+            file.nextLine();
+            length++;
 
-    // le premier nb premier sup à nb delements/le taux de remplissage
+        }
+        return length;
+    }
+
+    // le premier nb premier sup à nb d'élements/le taux de remplissage ça sera la longueure de la hashtable
     public int findPrimeNumber(File filePath,int filling) throws FileNotFoundException {
         int nbOfElements = computeNbOfElements(filePath);
         int start = (int) Math.ceil((double) nbOfElements/ filling);
@@ -84,12 +89,12 @@ public class HashTable {
         for(int index = start; index< computeNbOfElements(filePath); index++) {
             if (isPrimeNumber(index)) {
                 return (index);
-
             }
         }
         return 0;
     }
 
+// utilisé dans findPrimeNumeber
     public boolean isPrimeNumber(int number) {
         if (number < 2) {
             return false;
@@ -115,9 +120,7 @@ public class HashTable {
         return toString+"}";
     }
 
-    public ArrayList<LinkedList<MultiSet>> getHashTable() {
-        return hashTable;
-    }
+//-------------------------------------------------------------------------LA 2-SOMME-----------------------------------------------------------------------------------
 
 
     public MultiSet[] findTwoWords(MultiSet mixedWord) {
@@ -128,14 +131,19 @@ public class HashTable {
                     foundWords[0] = word;
                     char[] complementary = mixedWord.complementary(word);
                     MultiSet comp = this.findWord(complementary);
-                    foundWords[1] = comp;
+                    if(comp!=null){
+                        foundWords[1] = comp;
+                        return foundWords;
+                    }
                     return foundWords;
+
                 }
             }
         }
         return null;
     }
 
+// utilisé pour trouver le complémentaire dans findTwoWords
     public MultiSet findWord(char[] word) {
         if (word == null) return null;
 
@@ -146,7 +154,4 @@ public class HashTable {
         return null;
     }
 
-    public LinkedList<MultiSet> get(int index) {
-        return this.hashTable.get(index);
-    }
 }

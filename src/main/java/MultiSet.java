@@ -45,22 +45,9 @@ public class MultiSet {
         return letters;
     }
 
-    public boolean remove(Character c) {
-        return elementsOf(this).remove(c);
-    }
 
 
-
-//    public boolean existComplementary(){
-//
-//    }
-//
-//    public ArrayList<Character> getComplementary(){
-//
-//    }
-
-    //vérifie si  word1 contient word2 marche
-
+    //vérifie si this est contenu dans givenWord
     public boolean contains( MultiSet givenWord) {
         int count = 0;
         for (char letter: givenWord.getArrayOfLetters()) {
@@ -78,7 +65,7 @@ public class MultiSet {
     }
 
 
-    // methode qui retourne le complementaire de this par rapport a given word
+    // methode qui retourne le complémentaire de this par rapport a giveWord
     public char[] complementary(MultiSet givenWord) {
         int wordLength = givenWord.getArrayOfLetters().length;
         int thisLength =this.arrayOfLetters.length;
