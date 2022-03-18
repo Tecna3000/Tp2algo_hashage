@@ -107,7 +107,7 @@ public class HashTable {
 
     public String toString() {
         String toString = "{\n";
-        for(LinkedList list : hashTable) {
+        for(LinkedList<MultiSet> list : hashTable) {
             if (list.size() > 0) {
                 toString += "  "+ hashTable.indexOf(list)+": ";
                 for(Object word : list) {
@@ -122,7 +122,6 @@ public class HashTable {
 
 //-------------------------------------------------------------------------LA 2-SOMME-----------------------------------------------------------------------------------
 
-
     public MultiSet[] findTwoWords(MultiSet mixedWord) {
         final MultiSet[] foundWords = new MultiSet[2];
         for (LinkedList<MultiSet> list : hashTable) {
@@ -135,8 +134,6 @@ public class HashTable {
                         foundWords[1] = comp;
                         return foundWords;
                     }
-                    return foundWords;
-
                 }
             }
         }
