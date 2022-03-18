@@ -15,9 +15,13 @@ public class HashTable {
 
 
     public HashTable(File filePath, int filling) throws FileNotFoundException {
+        long start = System.currentTimeMillis() ;
         this.length = findPrimeNumber(filePath,filling);
         initialize();
         fillTable(filePath);
+        long end = System.currentTimeMillis();
+        double temp = (end-start)/1000.0;
+        System.out.println("The programme takes "+ temp + "second");
     }
 
     public void initialize(){
