@@ -91,7 +91,6 @@ public class MultiSet {
             if ( givenIndex < wordLength && givenWord.arrayOfLetters[givenIndex] == this.arrayOfLetters[thisIndex])
                 givenIndex++;
             else {
-                System.out.println(this.arrayOfLetters[thisIndex]);
                 complementary[compIndex] = this.arrayOfLetters[thisIndex];
                 compIndex++;
             }
